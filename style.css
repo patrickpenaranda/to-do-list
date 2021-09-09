@@ -43,3 +43,7 @@ body {
     background: pink;
     border-radius: 20px 10px;
 }
+#textbox {
+    width: 50%;
+    margin: 0 auto;
+}
