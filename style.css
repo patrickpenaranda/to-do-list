@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    background: lightblue;
+    font-size: 1rem;
+    padding: 0;
+    text-align: center;
+}
+.container-1 {
+    max-width: 875px;
+    display: flex;
+    flex-direction: column;
+    padding: .5rem;
+    width: 75%;
+    margin: 0 auto;
+    border: .15rem solid black;
+    border-radius: 10px;
+    background: white;
+}
+.column-1 {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content :center;
+}
+.column-1 input[type="text"] {
+    text-align: center;
+    margin-right: 1rem;
+    padding: .5rem;
+}
+.column-2 {
+
+    display: flex;
+    flex-direction: column;
+}
+.add {
+    border-radius: 5px;
+    background: green;
+    color: white;
+}
+.name {
+    padding: 1rem;
+    margin-top: 0;
+    background: pink;
+    border-radius: 20px 10px;
+}
