@@ -6,6 +6,12 @@ var tbox = document.getElementById("textbox");
 var error_message = document.createElement("h2");
 var message_div = document.createElement("div");
 
+tbox.addEventListener("keypress", delete_error_msg, false)
+
+function delete_error_msg(key) {
+    error_message.parentElement.remove();
+}
+
 
 window.addEventListener("keydown", enter_Event, true)
 
@@ -50,15 +56,20 @@ function main() {
         var u_lists = document.createElement("ul");
         var lists = document.createElement("li");
         var dlete_btn = document.createElement("i");
+        var success = document.createElement("i");
         var dlete_btn_div = document.createElement("div");
 
+        success.setAttribute("class","far fa-calendar-check")
+        success.style.padding = ".5rem 20%";
+        success.style.cursor = "pointer";
+        success.style.background = "green";
+        success.style.color = "white";
+
         dlete_btn.setAttribute("class", "fas fa-trash")
-        dlete_btn.style.padding = ".5rem";
+        dlete_btn.style.padding = ".5rem 20%";
         dlete_btn.style.cursor = "pointer";
-        dlete_btn.style.background = "gray";
-        dlete_btn_div.style.paddingRight = "20%";
-        dlete_btn_div.style.paddingLeft = "20%";
-        dlete_btn_div.style.paddingTop = ".5rem"
+        dlete_btn.style.color = "white";
+        dlete_btn.style.background = "red";
 
         lists.innerText = textBox.value;
         lists.style.fontFamily = "Coronetscript, cursive";
@@ -80,9 +91,14 @@ function main() {
         div_lists.style.display = "flex";
         div_lists.style.borderRadius = "10px";
         div_lists.style.border = "1px solid black";
-        
         div_lists.style.fontWeight = "700";
 
+        dlete_btn_div.style.display = "flex";
+        dlete_btn_div.style.width = "25%";
+        dlete_btn_div.style.justifyContent = "space-between"
+        dlete_btn_div.style.padding = ".5rem .5rem";
+        dlete_btn_div.style.flexDirection = "row";
+        dlete_btn_div.appendChild(success);
         dlete_btn_div.appendChild(dlete_btn);
         div_lists.appendChild(ul_div);
         div_lists.appendChild(dlete_btn_div);
