@@ -5,6 +5,9 @@ body {
     padding: 0;
     text-align: center;
 }
+.add {
+    cursor: pointer;
+}
 .container-1 {
     max-width: 875px;
     display: flex;

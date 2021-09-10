@@ -5,8 +5,20 @@ var tbox = document.getElementById("textbox");
 var error_message = document.createElement("h2");
 var message_div = document.createElement("div");
 
+window.addEventListener("keydown", enter_Event, true)
+
+function enter_Event(key) {
+    if(key.keyCode == "13") {
+        main();
+    }
+}
+
 
 add_btn.addEventListener("click", () => {
+    main();
+})
+
+function main() {
     var textBox = document.getElementById("textbox");
     if(textBox.value == "") {
         error_message.style.color = 'white';
@@ -30,12 +42,11 @@ add_btn.addEventListener("click", () => {
         var div_lists = document.createElement("div");
         var u_lists = document.createElement("ul");
         var lists = document.createElement("li");
-        var dlete_btn = document.createElement("button");
-        dlete_btn.innerText = "Delete";
-        dlete_btn.style.color = "white";
-        dlete_btn.style.background = "red";
-        dlete_btn.style.borderRadius = "5px";
-        
+        var dlete_btn = document.createElement("i");
+        dlete_btn.setAttribute("class", "fas fa-trash")
+        dlete_btn.style.padding = ".5rem";
+        dlete_btn.style.cursor = "pointer";
+        dlete_btn.style.background = "gray";
         lists.innerText = textBox.value;
         lists.style.display = "flex";
         lists.style.justifyContent = "space-around";
@@ -55,4 +66,4 @@ add_btn.addEventListener("click", () => {
         column_2.append(div_lists);
         textBox.value = "";
     }
-})
+}
