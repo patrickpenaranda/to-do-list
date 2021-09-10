@@ -33,7 +33,7 @@ body {
     flex-direction: column;
 }
 .add {
-    border-radius: 10px;
+    border-radius: 5px;
     background: green;
     color: white;
 }
