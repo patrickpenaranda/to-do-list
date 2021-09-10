@@ -57,3 +57,18 @@ li {
 li:before {
     content: "\2714";
 }
+
+@media (max-width: 975px) {
+    #textbox {
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    li:before {
+        content: "\2714";
+        color: red;
+    }
+    li {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: larger;
+    }
+    
+}
