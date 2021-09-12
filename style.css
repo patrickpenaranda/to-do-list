@@ -15,9 +15,9 @@ body {
     padding: .5rem;
     width: 75%;
     margin: 0 auto;
-    border: .15rem solid black;
     border-radius: 10px;
     background: white;
+    box-shadow: 5px 5px 10px grey;
 }
 .column-1 {
     padding: 1rem;
@@ -62,7 +62,7 @@ li:before {
 
 
 
-@media (max-width: 975px) {
+@media(max-width: 975px) {
     #textbox {
         font-family: Arial, Helvetica, sans-serif;
     }
@@ -74,6 +74,5 @@ li:before {
         content: "\261B";
         size: 1rem;
         color: red;
-    }
-    
+    } 
 }
