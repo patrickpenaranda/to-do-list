@@ -63,20 +63,30 @@ function main() {
         var dlete_btn = document.createElement("i");
         var success = document.createElement("i");
         var dlete_btn_div = document.createElement("div");
-        
+        var unicode = document.createElement("span");
+
+
+
+
         sessionStorage.setItem(users_name.value, textBox);   
+        unicode.innerHTML = "&#9755";
+        unicode.style.paddingTop = "15px";
+        unicode.style.fontSize = "20px";
+        unicode.style.paddingLeft = "5px"
+        unicode.style.color = "black";
 
             success.setAttribute("class","far fa-calendar-check")
 
             success.style.cursor = "pointer";
             success.style.background = "green";
             success.style.color = "white";
-
+            success.style.marginRight = "25%"
             dlete_btn.setAttribute("class", "fas fa-trash")
             
             dlete_btn.style.cursor = "pointer";
             dlete_btn.style.color = "white";
             dlete_btn.style.background = "red";
+
             const mediaQuery = window.matchMedia("(max-width: 650px)");
 
 
@@ -90,6 +100,7 @@ function main() {
                     dlete_btn.style.padding = ".5rem 20%";
                 }
             }
+
             lists.innerText = sessionStorage.getItem(users_name.value);
             lists.style.fontFamily = "Coronetscript, cursive";
             lists.style.overflowWrap = "break-word";
@@ -104,17 +115,17 @@ function main() {
             ul_div.style.flexWrap = "wrap";
             ul_div.style.width = "75%";
             ul_div.style.maxWidth = "75%";
+            ul_div.appendChild(unicode);
             ul_div.appendChild(u_lists);
 
             div_lists.style.margin = ".5rem 0";
             div_lists.style.display = "flex";
             div_lists.style.borderRadius = "10px";
-            div_lists.style.border = "1px solid black";
+            div_lists.style.border = "1px solid gray";
             div_lists.style.fontWeight = "700";
 
             dlete_btn_div.style.display = "flex";
             dlete_btn_div.style.width = "25%";
-            dlete_btn_div.style.justifyContent = "space-between"
             dlete_btn_div.style.padding = ".5rem .5rem";
             dlete_btn_div.style.flexDirection = "row";
             dlete_btn_div.appendChild(success);
@@ -123,6 +134,8 @@ function main() {
             div_lists.appendChild(dlete_btn_div);
 
             const dumm = users_name.value;
+
+
 
             dlete_btn.addEventListener("click", (event)=> {
                 const btn = event.target;
@@ -135,6 +148,19 @@ function main() {
                     btn.parentElement.parentElement.remove();
                 }
             })
+
+            success.addEventListener("click", (e)=> {
+                if(e.target.className === "far fa-calendar-check") {
+                    var span = e.target.parentElement.parentElement.childNodes[0].childNodes[0];
+                    span.innerHTML = "&#10003"
+                    span.style.color = "green";
+                }
+            })
+
+            dlete_btn_div.appendChild(success);
+            dlete_btn_div.appendChild(dlete_btn);
+            div_lists.appendChild(ul_div);
+            div_lists.appendChild(dlete_btn_div);
 
             column_2.append(div_lists);
 
@@ -162,18 +188,19 @@ function display() {
         var success = document.createElement("i");
         var dlete_btn_div = document.createElement("div");
 
+        var unicode = document.createElement("span");
 
+        unicode.innerHTML = "&#9755";
+        unicode.style.paddingTop = "15px";
+        unicode.style.fontSize = "20px";
+        unicode.style.paddingLeft = "5px"
+        unicode.style.color = "black";
         const mediaQuery = window.matchMedia("(max-width: 650px)");
-
 
         function myfunction(e) {
             if(e.matches){
                 success.style.padding = "1rem 10%";
                 dlete_btn.style.padding = "1rem 10%";
-            }
-            else {
-                success.style.padding = ".5rem 20%";
-                dlete_btn.style.padding = ".5rem 20%";
             }
         }
 
@@ -182,7 +209,14 @@ function display() {
             success.style.cursor = "pointer";
             success.style.background = "green";
             success.style.color = "white";
-
+            success.style.marginRight = "25%"
+            success.addEventListener("click", (e)=> {
+                if(e.target.className === "far fa-calendar-check") {
+                    var span = e.target.parentElement.parentElement.childNodes[0];
+                    span.innerHTML = "&#10003"
+                    span.style.color = "green";
+                }  
+            })
             
 
             dlete_btn.setAttribute("class", "fas fa-trash");
@@ -210,17 +244,17 @@ function display() {
             ul_div.style.flexWrap = "wrap";
             ul_div.style.width = "75%";
             ul_div.style.maxWidth = "75%";
+            
             ul_div.appendChild(u_lists);
 
             div_lists.style.margin = ".5rem 0";
             div_lists.style.display = "flex";
             div_lists.style.borderRadius = "10px";
-            div_lists.style.border = "1px solid black";
+            div_lists.style.border = "1px solid gray";
             div_lists.style.fontWeight = "700";
 
             dlete_btn_div.style.display = "flex";
             dlete_btn_div.style.width = "25%";
-            dlete_btn_div.style.justifyContent = "space-between"
             dlete_btn_div.style.padding = ".5rem .5rem";
             dlete_btn_div.style.flexDirection = "row";
 
@@ -240,7 +274,7 @@ function display() {
             dlete_btn_div.appendChild(dlete_btn);
 
             
-
+            div_lists.appendChild(unicode);
             div_lists.appendChild(ul_div);
             div_lists.appendChild(dlete_btn_div);
 
