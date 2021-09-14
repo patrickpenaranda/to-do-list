@@ -5,11 +5,7 @@ body {
     padding: 0;
     text-align: center;
 }
-#two {
-    position: relative;
-    width: 75%;
-    margin: 0 auto;
-}
+
 .add {
     margin-top: .5rem;
     cursor: pointer;
@@ -19,7 +15,7 @@ body {
     padding: 10px;
     border: none;
     position: relative;
-    transition: all 1s cubic-bezier(0.13, 0.77, 1, 0.18) 1ms;
+    transition: all 1s cubic-bezier(0.18, 0.16, 0.48, 0.48) 1ms;
 }
 .add:hover{
     background: #c76597;
@@ -59,11 +55,13 @@ body {
     border-radius: 20px 10px;
 }
 #textbox {
+    position: relative;
     font-size: 1rem;
     font-family: Coronetscript, cursive;
     width: 75%;
     margin: 0 auto;
     cursor: auto;
+    border-radius: 10px;
 }
 li {
     letter-spacing: .10rem;
@@ -73,13 +71,11 @@ li {
 i {
     padding: 1rem 10%;
 }
-
+h2.name {
+    color: rgb(118, 47, 131);
+}
 @media(max-width: 975px) {
     #textbox {
         font-family: Arial, Helvetica, sans-serif;
-    }
-    li {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: larger;
     }
 }

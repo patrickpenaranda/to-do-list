@@ -5,6 +5,9 @@ var column_1 = document.getElementById("column-1-id");
 var error_message = document.createElement("h2");
 var message_div = document.createElement("div");
 var users_name = document.getElementById("two");
+var list_array = [];
+
+
 
 document.getElementById("textbox").addEventListener("click", delete_error_msg, false)
 document.getElementById("textbox").addEventListener("keypress", delete_error_msg, false)
@@ -18,10 +21,8 @@ function delete_error_msg(event) {
         if(element.className === "errorMsg_div") {
             element.remove();
         }
-    });
-    
+    });    
 }
-
 
 window.addEventListener("keydown", enter_Event, true)
 
@@ -29,7 +30,7 @@ window.addEventListener("keydown", enter_Event, true)
 //Enter key
 function enter_Event(key) {
     if(key.keyCode == "13") {
-        main();
+        main(); 
     }
 }
 
@@ -37,6 +38,16 @@ function enter_Event(key) {
 add_btn.addEventListener("click", () => {
     main();
 })
+
+const mediaQuery = window.matchMedia("(max-width: 650px)");
+
+function myfunction(e) {
+    if(!e.matches){
+        document.getElementsByTagName('li').style.fontFamily = "Coronetscript, cursive";
+    }
+}
+mediaQuery.addListener(myfunction);
+
 
 //main function
 function main() {
@@ -56,6 +67,7 @@ function main() {
         column_1.appendChild(message_div);
         console.log("Empty Field!");    
     } else {
+        var i = localStorage.length;
         var ul_div = document.createElement("div");
         var div_lists = document.createElement("div");
         var u_lists = document.createElement("ul");
@@ -65,15 +77,14 @@ function main() {
         var dlete_btn_div = document.createElement("div");
         var unicode = document.createElement("span");
 
-
-
-
-        sessionStorage.setItem(users_name.value, textBox);   
         unicode.innerHTML = "&#9755";
         unicode.style.paddingTop = "15px";
         unicode.style.fontSize = "20px";
         unicode.style.paddingLeft = "5px"
         unicode.style.color = "black";
+
+        list_array.push(textBox);
+        localStorage.setItem(textBox, unicode.innerHTML);   
 
             success.setAttribute("class","far fa-calendar-check")
 
@@ -100,9 +111,9 @@ function main() {
                     dlete_btn.style.padding = ".5rem 20%";
                 }
             }
+            mediaQuery.addListener(myfunction);
 
-            lists.innerText = sessionStorage.getItem(users_name.value);
-            lists.style.fontFamily = "Coronetscript, cursive";
+            lists.innerText = textBox;
             lists.style.overflowWrap = "break-word";
             lists.style.wordBreak = "break-word";
             lists.style.listStyle = "none";
@@ -115,7 +126,6 @@ function main() {
             ul_div.style.flexWrap = "wrap";
             ul_div.style.width = "75%";
             ul_div.style.maxWidth = "75%";
-            ul_div.appendChild(unicode);
             ul_div.appendChild(u_lists);
 
             div_lists.style.margin = ".5rem 0";
@@ -130,30 +140,32 @@ function main() {
             dlete_btn_div.style.flexDirection = "row";
             dlete_btn_div.appendChild(success);
             dlete_btn_div.appendChild(dlete_btn);
+            div_lists.appendChild(unicode);
             div_lists.appendChild(ul_div);
             div_lists.appendChild(dlete_btn_div);
 
-            const dumm = users_name.value;
-
-
-
             dlete_btn.addEventListener("click", (event)=> {
                 const btn = event.target;
-
                 if(btn.className == "fas fa-trash") {
-                    
-                    const key = btn.parentElement.parentElement.innerText;
+                    const key = btn.parentElement.parentElement.childNodes[1].innerText;
                     console.log(key);
-                    sessionStorage.removeItem(dumm);
+                    localStorage.removeItem(key);
                     btn.parentElement.parentElement.remove();
                 }
             })
 
             success.addEventListener("click", (e)=> {
                 if(e.target.className === "far fa-calendar-check") {
-                    var span = e.target.parentElement.parentElement.childNodes[0].childNodes[0];
+                    var span = e.target.parentElement.parentElement.childNodes[0];
+                    var key = e.target.parentElement.parentElement.childNodes[1].innerText;
                     span.innerHTML = "&#10003"
                     span.style.color = "green";
+
+                    var value = span.innerHTML;
+                    localStorage.removeItem(key);
+                    localStorage.setItem(key, value);
+
+                    console.log(list_array);
                 }
             })
 
@@ -165,18 +177,15 @@ function main() {
             column_2.append(div_lists);
 
         }
-        
         document.getElementById("textbox").value = "";
-        document.getElementById("two").value = "";
     }
 
 
 
-    //Main Function
+    //Window Session Start
 function display() {
 
-
-    for(let i = 0; i < sessionStorage.length; i++) { 
+    for(let i = 0; i < localStorage.length; i++) { 
         var dlete_btn = document.createElement("i");
         var column_2 = document.getElementById("column-2-id");
         var textBox = document.getElementById("textbox");
@@ -190,11 +199,7 @@ function display() {
 
         var unicode = document.createElement("span");
 
-        unicode.innerHTML = "&#9755";
-        unicode.style.paddingTop = "15px";
-        unicode.style.fontSize = "20px";
-        unicode.style.paddingLeft = "5px"
-        unicode.style.color = "black";
+        
         const mediaQuery = window.matchMedia("(max-width: 650px)");
 
         function myfunction(e) {
@@ -205,19 +210,12 @@ function display() {
         }
 
             mediaQuery.addListener(myfunction);
+
             success.setAttribute("class","far fa-calendar-check")      
             success.style.cursor = "pointer";
             success.style.background = "green";
             success.style.color = "white";
             success.style.marginRight = "25%"
-            success.addEventListener("click", (e)=> {
-                if(e.target.className === "far fa-calendar-check") {
-                    var span = e.target.parentElement.parentElement.childNodes[0];
-                    span.innerHTML = "&#10003"
-                    span.style.color = "green";
-                }  
-            })
-            
 
             dlete_btn.setAttribute("class", "fas fa-trash");
             
@@ -225,16 +223,24 @@ function display() {
             dlete_btn.style.color = "white";
             dlete_btn.style.background = "red";
 
+            lists.innerText = localStorage.key(i.toString());
             
-            
-            
-
-
-            lists.innerText = sessionStorage.getItem(sessionStorage.key(i));
-            lists.style.fontFamily = "Coronetscript, cursive";
             lists.style.overflowWrap = "break-word";
             lists.style.wordBreak = "break-word";
             lists.style.listStyle = "none";
+
+            unicode.innerText = localStorage.getItem(lists.innerText)
+            unicode.style.paddingTop = "15px";
+            unicode.style.fontSize = "20px";
+            unicode.style.paddingLeft = "5px"
+            
+            if(localStorage.getItem(localStorage.key(i)) == "✓") {
+                console.log("true")
+                unicode.style.color = "green";
+            } else {
+                unicode.style.color = "black";
+            }
+            
 
             u_lists.style.display = "flex";
             u_lists.style.flexWrap = "wrap";
@@ -244,7 +250,6 @@ function display() {
             ul_div.style.flexWrap = "wrap";
             ul_div.style.width = "75%";
             ul_div.style.maxWidth = "75%";
-            
             ul_div.appendChild(u_lists);
 
             div_lists.style.margin = ".5rem 0";
@@ -260,14 +265,28 @@ function display() {
 
             dlete_btn.addEventListener("click", (event)=> {
                 const btn = event.target;
-
+                var key = btn.parentElement.parentElement.childNodes[1].innerText;
                 if(btn.className == "fas fa-trash") {
                     
-                    const key = btn.parentElement.parentElement.innerText;
                     console.log(key);
-                    sessionStorage.removeItem(sessionStorage.key(i));
+                    localStorage.removeItem(key)
                     btn.parentElement.parentElement.remove();
                 }
+                key = "";
+            })
+
+            success.addEventListener("click", (e)=> {
+                if(e.target.className === "far fa-calendar-check") {
+                    var span = e.target.parentElement.parentElement.childNodes[0];
+                    var key = e.target.parentElement.parentElement.childNodes[1].innerText;
+                    span.innerHTML = "&#10003"
+                    span.style.color = "green";
+
+                    var value = span.innerHTML;
+                    localStorage.removeItem(key);
+                    localStorage.setItem(key, value);
+
+                }  
             })
 
             dlete_btn_div.appendChild(success);
@@ -281,10 +300,7 @@ function display() {
             
             column_2.append(div_lists);
         }
-        
-        
-        
-    }
+}
 
 }, false)
 
