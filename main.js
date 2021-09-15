@@ -4,9 +4,6 @@ var column_2 = document.getElementById("column-2-id");
 var column_1 = document.getElementById("column-1-id");
 var error_message = document.createElement("h2");
 var message_div = document.createElement("div");
-var users_name = document.getElementById("two");
-var list_array = [];
-
 
 
 document.getElementById("textbox").addEventListener("click", delete_error_msg, false)
@@ -83,7 +80,6 @@ function main() {
         unicode.style.paddingLeft = "5px"
         unicode.style.color = "black";
 
-        list_array.push(textBox);
         localStorage.setItem(textBox, unicode.innerHTML);   
 
             success.setAttribute("class","far fa-calendar-check")
@@ -164,8 +160,6 @@ function main() {
                     var value = span.innerHTML;
                     localStorage.removeItem(key);
                     localStorage.setItem(key, value);
-
-                    console.log(list_array);
                 }
             })
 
