@@ -11,6 +11,7 @@ var list_array = [];
 
 document.getElementById("textbox").addEventListener("click", delete_error_msg, false)
 document.getElementById("textbox").addEventListener("keypress", delete_error_msg, false)
+document.getElementById("textbox").addEventListener("keypress", enter_Event, false)
 
 display();
 
