@@ -8,6 +8,10 @@ var message_div = document.createElement("div");
 
 document.getElementById("textbox").addEventListener("click", delete_error_msg, false)
 document.getElementById("textbox").addEventListener("keypress", delete_error_msg, false)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 56bd76ed8c8eb572754680af4f7a781df765b345
 
 display();
 
